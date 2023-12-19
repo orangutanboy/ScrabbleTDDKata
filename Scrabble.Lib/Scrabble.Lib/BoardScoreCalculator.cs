@@ -6,7 +6,16 @@ namespace Scrabble.Lib
     {
         public int ScoreWord(IEnumerable<(Square Square, Tile Tile)> laidTiles, IEnumerable<Square> boardSquares)
         {
-            return 12;
+            var score = 0;
+            var wordFactor = 1;
+
+            foreach (var (square, tile) in laidTiles)
+            {
+                score += tile.Value * square.Type.LetterFactor;
+                wordFactor *= square.Type.WordFactor;
+            }
+
+            return score * wordFactor;
         }
     }
 }
