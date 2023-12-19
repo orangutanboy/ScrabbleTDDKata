@@ -30,7 +30,10 @@ namespace Scrabble.Lib.Test
                     ScrabbleGame.LayWord(i % 2 == 0 ? "Victoria" : "Albert", Words[i]);
                     var result = ScrabbleGame.AcceptWord();
                     Assert.That(result.ValidWord, Is.True);
-                    Assert.That(result.PlayerScore, Is.EqualTo(ExpectedScores[i]));
+
+                    var tiles = Words[i].Aggregate("", (s, tp) => s + tp.Tile.Letter);
+                    Assert.That(result.PlayerScore, Is.EqualTo(ExpectedScores[i]),
+                        $"Incorrect score for tiles '{tiles}': expected {ExpectedScores[i]}, actual {result.PlayerScore}");
                 }
             }
         }
@@ -38,6 +41,7 @@ namespace Scrabble.Lib.Test
         //TODO: Start here
 
         #region Initial word must go through the centre square, and scores double the tile values (centre square is effectively a Double Word Score)
+
         public class LayingFirstWord : WordsTest
         {
             /*
@@ -57,8 +61,10 @@ namespace Scrabble.Lib.Test
             {
                 PlayerNames = new[] { "Victoria" };
 
-                Words = new[] {
-                    new[] {
+                Words = new[]
+                {
+                    new[]
+                    {
                         TilePoint.Create('H', "H8"),
                         TilePoint.Create('E', "I8"),
                         TilePoint.Create('N', "J8")
@@ -74,9 +80,11 @@ namespace Scrabble.Lib.Test
                 LayTheWords();
             }
         }
+
         #endregion
 
         #region Initial word is extended horizontally with suffix
+
         /*Scores value of all letter tiles (no new bonus squares used)*/
         //public class ExtendingAWordHorizontallySuffix : WordsTest
         //{
@@ -122,9 +130,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
-        #region Initial word is extended horizontally with prefix      
+        #region Initial word is extended horizontally with prefix
+
         //Scores value of all letter tiles (no new bonus squares used)
         //public class ExtendingAWordHorizontallyPrefix : WordsTest
         //{
@@ -169,9 +179,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Initial word is extended vertically with suffix
+
         //Scores value of all letter tiles (no new bonus squares used)
         //public class ExtendingAWordVerticallySuffix : WordsTest
         //{
@@ -218,9 +230,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Initial word is extended vertically with prefix
+
         //Scores value of all letter tiles (no new bonus squares used)
         //public class ExtendingAWordVerticallyPrefix : WordsTest
         //{
@@ -265,9 +279,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
-        #region Initial word is extended by a horizontal word below        
+        #region Initial word is extended by a horizontal word below
+
         //Scores value of all letter tiles for both words
         //public class ExtendingAWordUnderneath : WordsTest
         //{
@@ -317,9 +333,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
-        #region Initial word is extended by a horizontal word below        
+        #region Initial word is extended by a horizontal word below
+
         //Scores new word(+ bonuses) + (tile + bonus) for the letter extending the word + (tile scores without bonus) for existing tiles in extended word.
         //public class ExtendingAWordUnderneathWithLetterBonus : WordsTest
         //{
@@ -366,9 +384,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Initial word is extended by a horizontal word above
+
         //public class ExtendingAWordAbove : WordsTest
         //{
         //    /*
@@ -412,9 +432,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Initial word is extended by a vertical word to the left
+
         //public class ExtendingAWordLeft : WordsTest
         //{
         //    /*
@@ -458,9 +480,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Initial word is extended by a vertical word to the right
+
         //public class ExtendingAWordRight : WordsTest
         //{
         //    /*
@@ -504,9 +528,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Initial word is intersected. Just scores points for the tiles laid (+ bonuses)
+
         //public class CrossingAWordVertically : WordsTest
         //{
         //    /*
@@ -552,9 +578,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Initial word is intersected. Just scores points for the tiles laid (+ bonuses)
+
         //public class CrossingAWordHorizontally : WordsTest
         //{
         //    /*
@@ -599,9 +627,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region New word intersects an existing word, and creates two additional new words
+
 //        public class ExtendingMultipleWords : WordsTest
 //        {
 //            /*
@@ -679,9 +709,11 @@ namespace Scrabble.Lib.Test
 //                LayTheWords();
 //            }
 //        }
+
         #endregion
 
         #region Laying all tiles in one go scores a nonus 50 points
+
         //public class UsingAllTiles : WordsTest
         //{
         //    /*
@@ -735,9 +767,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region New word extends initial word, spans two bonus squares and uses all tiles
+
         //public class SpanTwoWordBonusSquares : WordsTest
         //{
         //    /*
@@ -788,9 +822,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Single tile creates a horizontal word between two existing tiles
+
         //public class BridgingTwoLettersHorizontally : WordsTest
         //{
         //    /*
@@ -856,9 +892,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Single tile creates a vertical word between two existing tiles
+
         //public class BridgingTwoLettersVertically : WordsTest
         //{
         //    /*
@@ -921,9 +959,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Single tile creates horizontal and vertical words between existing tiles
+
         //public class FillingASquareWithSingleTile : WordsTest
         //{
         //    /*
@@ -992,9 +1032,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Multiple tiles create a new horizontal word and two vertical words between existing tiles
+
         //public class FillingASquareWithMultipleTilesHorizontally : WordsTest
         //{
         //    /*
@@ -1056,9 +1098,11 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
 
         #region Multiple tiles create a new vertical word and two horizontal words between existing tiles
+
         //public class FillingASquareWithMultipleTilesVertically : WordsTest
         //{
         //    /*
@@ -1120,6 +1164,7 @@ namespace Scrabble.Lib.Test
         //        LayTheWords();
         //    }
         //}
+
         #endregion
     }
 }
