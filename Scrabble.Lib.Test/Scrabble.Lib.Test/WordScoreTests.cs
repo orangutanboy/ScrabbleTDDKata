@@ -86,50 +86,53 @@ namespace Scrabble.Lib.Test
         #region Initial word is extended horizontally with suffix
 
         /*Scores value of all letter tiles (no new bonus squares used)*/
-        //public class ExtendingAWordHorizontallySuffix : WordsTest
-        //{
-        //    /*
-        //     Word 1 (H on centre) =
-        //     |H|E| | |
-        //     | | | | |
-        //     | | | | |
-        //     * 
-        //     Word 2 =
-        //     |H|E|A|D|
-        //     | | | | |
-        //     | | | | |
-        //     */
+        public class ExtendingAWordHorizontallySuffix : WordsTest
+        {
+            /*
+             Word 1 (H on centre) =
+             |H|E| | |
+             | | | | |
+             | | | | |
+             *
+             Word 2 =
+             |H|E|A|D|
+             | | | | |
+             | | | | |
+             */
 
-        //    public ExtendingAWordHorizontallySuffix()
-        //    {
-        //        TilesToSelect = "HEABCDE" + "ADFGHIJ" + "ABCDE";
-        //    }
+            public ExtendingAWordHorizontallySuffix()
+            {
+                TilesToSelect = "HEABCDE" + "ADFGHIJ" + "ABCDE";
+            }
 
-        //    [SetUp]
-        //    public void CreateWordsAndScores()
-        //    {
-        //        PlayerNames = new[] { "Victoria" };
+            [SetUp]
+            public void CreateWordsAndScores()
+            {
+                PlayerNames = new[] { "Victoria" };
 
-        //        Words = new[] {
-        //            new[] {
-        //                TilePoint.Create('H', "H8"),
-        //                TilePoint.Create('E', "H9")
-        //            },
-        //            new[] {
-        //                TilePoint.Create('A', "H10"),
-        //                TilePoint.Create('D', "H11"),
-        //            }
-        //        };
+                Words = new[]
+                {
+                    new[]
+                    {
+                        TilePoint.Create('H', "H8"),
+                        TilePoint.Create('E', "H9")
+                    },
+                    new[]
+                    {
+                        TilePoint.Create('A', "H10"),
+                        TilePoint.Create('D', "H11"),
+                    }
+                };
 
-        //        ExpectedScores = new[] { 10, 8 };
-        //    }
+                ExpectedScores = new[] { 10, 8 };
+            }
 
-        //    [Test]
-        //    public void ThenScoresExtendedWord()
-        //    {
-        //        LayTheWords();
-        //    }
-        //}
+            [Test]
+            public void ThenScoresExtendedWord()
+            {
+                LayTheWords();
+            }
+        }
 
         #endregion
 
