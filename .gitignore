@@ -137,3 +137,4 @@ packages/
 /packages/jQuery.1.10.2/Tools/*.js
 /packages/jQuery.1.10.2/*.nupkg
 .vs/
+.idea/
